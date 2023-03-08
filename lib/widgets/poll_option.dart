@@ -17,18 +17,18 @@ class PollOption extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
+        Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               optionText,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
-              '${percent.toStringAsFixed(2)}%',
-              style: TextStyle(
+              '${percent.toStringAsFixed(3)} đ',
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -39,7 +39,7 @@ class PollOption extends StatelessWidget {
           backgroundColor: backgroundColor,
           valueColor: AlwaysStoppedAnimation<Color>(foregroundColor),
         ),
-        SizedBox(height: 10),
+        SizedBox(height: 1),
       ],
     );
   }

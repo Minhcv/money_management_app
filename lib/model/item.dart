@@ -1,6 +1,7 @@
 class Item {
   final String title;
-  bool completed = false;
+  final int money;
+  final DateTime dateCreated;
 
-  Item(this.title, this.completed);
+  Item(this.title, this.money, this.dateCreated);
 }

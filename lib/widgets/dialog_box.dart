@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'custom_button.dart';
@@ -6,10 +7,12 @@ import 'custom_button.dart';
 class DialogBox extends StatelessWidget {
   const DialogBox(
       {super.key,
-      required this.controller,
+      required this.title,
+      required this.money,
       required this.onSave,
       required this.onCancel});
-  final TextEditingController controller;
+  final TextEditingController title;
+  final TextEditingController money;
   final VoidCallback onSave;
   final VoidCallback onCancel;
   @override
@@ -17,14 +20,27 @@ class DialogBox extends StatelessWidget {
     return AlertDialog(
       // backgroundColor: Colors.purple[400],
       content: SizedBox(
-        height: 120,
+        height: 200,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             TextField(
-              controller: controller,
+              controller: title,
               decoration: InputDecoration(
-                hintText: "Task Name",
+                hintText: "Tên chi phí",
+                hintStyle: GoogleFonts.roboto(color: Colors.blue[200]),
+                border: const OutlineInputBorder(),
+              ),
+              style: GoogleFonts.roboto(color: Colors.blue),
+            ),
+            TextField(
+              controller: money,
+              keyboardType: TextInputType.number,
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.digitsOnly
+              ],
+              decoration: InputDecoration(
+                hintText: "Tổng cộng",
                 hintStyle: GoogleFonts.roboto(color: Colors.blue[200]),
                 border: const OutlineInputBorder(),
               ),
@@ -37,15 +53,18 @@ class DialogBox extends StatelessWidget {
                   text: 'Add Taks',
                   onClick: onSave,
                 ),
-                // const SizedBox(
-                //   width: 5,
-                // ),
                 CustomButton(
                   text: 'Cancel',
                   onClick: onCancel,
                 ),
               ],
-            )
+            ),
+            // Text('Selected Date: ${dateCreate.toString()}'),
+            // SizedBox(height: 20.0),
+            // FloatingActionButton(
+            //   onPressed: () => {dateCreate = context as DateRangePickerDialog},
+            //   child: Text('Select date'),
+            // ),
           ],
         ),
       ),

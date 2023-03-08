@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class ItemUsage extends StatelessWidget {
-  final String taskName;
-  final bool isComplated;
-  final Function(bool?)? onChange;
+  final String title;
+  final int money;
+  final DateTime dateCreated;
   final Function(BuildContext)? deleteFunction;
 
   const ItemUsage(
       {super.key,
-      required this.taskName,
-      required this.isComplated,
-      required this.onChange,
+      required this.title,
+      required this.money,
+      required this.dateCreated,
       required this.deleteFunction});
 
   @override
@@ -39,23 +40,40 @@ class ItemUsage extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Checkbox(
-                  checkColor: Colors.white,
-                  value: isComplated,
-                  onChanged: onChange),
-              const SizedBox(
-                width: 10,
-              ),
-              Text(
-                taskName,
-                style: GoogleFonts.roboto(
-                  color: Colors.white,
-                  fontWeight: isComplated ? FontWeight.bold : FontWeight.normal,
-                  fontSize: 18,
-                  // decoration: isComplated
-                  //     ? TextDecoration.lineThrough
-                  //     : TextDecoration.none,
-                ),
+              Container(
+                  width: 50,
+                  height: 50,
+                  margin: const EdgeInsets.only(right: 20.0),
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: Center(
+                    child: Text(
+                      '$money K',
+                      style: GoogleFonts.roboto(
+                        color: Colors.white,
+                        fontSize: 10,
+                      ),
+                    ),
+                  )),
+              Column(
+                children: [
+                  Text(
+                    'Chi phí: $title',
+                    style: GoogleFonts.roboto(
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
+                  ),
+                  Text(
+                    DateFormat('dd/MM/yyyy HH:mm').format(dateCreated),
+                    style: GoogleFonts.roboto(
+                      color: Colors.grey,
+                      fontSize: 11,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
