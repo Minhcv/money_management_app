@@ -10,20 +10,26 @@ class DialogBox extends StatelessWidget {
       required this.title,
       required this.money,
       required this.onSave,
-      required this.onCancel});
+      required this.onCancel,
+      required this.showDatetimePicker,
+      required this.selectedDate});
   final TextEditingController title;
   final TextEditingController money;
   final VoidCallback onSave;
   final VoidCallback onCancel;
+  final VoidCallback showDatetimePicker;
+  final DateTime? selectedDate;
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       // backgroundColor: Colors.purple[400],
       content: SizedBox(
-        height: 200,
+        height: 300,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            const Text('Thêm chi phí'),
             TextField(
               controller: title,
               decoration: InputDecoration(
@@ -46,6 +52,7 @@ class DialogBox extends StatelessWidget {
               ),
               style: GoogleFonts.roboto(color: Colors.blue),
             ),
+            CustomButton(onClick: showDatetimePicker, text: 'Chọn ngày'),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -59,12 +66,6 @@ class DialogBox extends StatelessWidget {
                 ),
               ],
             ),
-            // Text('Selected Date: ${dateCreate.toString()}'),
-            // SizedBox(height: 20.0),
-            // FloatingActionButton(
-            //   onPressed: () => {dateCreate = context as DateRangePickerDialog},
-            //   child: Text('Select date'),
-            // ),
           ],
         ),
       ),

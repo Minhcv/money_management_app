@@ -1,33 +1,64 @@
 import 'package:flutter/material.dart';
 
-class PollOption extends StatelessWidget {
+class ColumnChart extends StatelessWidget {
   final String optionText;
-  final double percent;
+  final int money;
+  final int sum;
   final Color backgroundColor;
   final Color foregroundColor;
 
-  PollOption({
+  const ColumnChart({
+    super.key,
     required this.optionText,
-    required this.percent,
+    required this.money,
+    required this.sum,
     required this.backgroundColor,
     required this.foregroundColor,
   });
 
   @override
   Widget build(BuildContext context) {
+    String day = '';
+    switch (optionText) {
+      case '0':
+        day = 'Chủ nhật';
+        break;
+      case '1':
+        day = 'Thứ 2';
+        break;
+      case '2':
+        day = 'Thứ 3';
+        break;
+      case '3':
+        day = 'Thứ 4';
+        break;
+      case '4':
+        day = 'Thứ 5';
+        break;
+      case '5':
+        day = 'Thứ 6';
+        break;
+      case '6':
+        day = 'Thứ 7';
+        break;
+    }
+    double percent = 0;
+    if (money != 0 && sum != 0) {
+      percent = money / sum;
+    }
     return Column(
       children: [
-        Column(
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              optionText,
+              day,
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
-              '${percent.toStringAsFixed(3)} đ',
+              '${money.toStringAsFixed(3)} đ',
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
               ),
@@ -35,11 +66,11 @@ class PollOption extends StatelessWidget {
           ],
         ),
         LinearProgressIndicator(
-          value: percent / 100,
+          value: percent,
           backgroundColor: backgroundColor,
           valueColor: AlwaysStoppedAnimation<Color>(foregroundColor),
         ),
-        SizedBox(height: 1),
+        const SizedBox(height: 1),
       ],
     );
   }
