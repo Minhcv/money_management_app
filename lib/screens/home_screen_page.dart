@@ -199,7 +199,6 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
                 return ItemUsage(
                   title: itemList[index].title,
                   money: itemList[index].money,
-                  day: itemList[index].dayOfWeek,
                   dateCreated: itemList[index].dateCreated,
                   deleteFunction: (ctx) {
                     deleteTask(index);

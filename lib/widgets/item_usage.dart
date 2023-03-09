@@ -6,7 +6,6 @@ import 'package:intl/intl.dart';
 class ItemUsage extends StatelessWidget {
   final String title;
   final int money;
-  final int day;
   final DateTime dateCreated;
   final Function(BuildContext)? deleteFunction;
 
@@ -14,7 +13,6 @@ class ItemUsage extends StatelessWidget {
       {super.key,
       required this.title,
       required this.money,
-      required this.day,
       required this.dateCreated,
       required this.deleteFunction});
 
@@ -62,7 +60,7 @@ class ItemUsage extends StatelessWidget {
               Column(
                 children: [
                   Text(
-                    'Chi phí: $title   $day',
+                    'Chi phí: $title',
                     style: GoogleFonts.roboto(
                       color: Colors.white,
                       fontSize: 18,
